@@ -1,0 +1,68 @@
+@{
+    ViewBag.Title = "Temperature Converter";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .alert {
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4 mb-4">Temperature Converter</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                @using (Html.BeginForm("Convert", "Home", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.celsius, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.celsius, new { htmlAttributes = new { @class = "form-control", type = "number", required = "required" } })
+                    </div>
+                    <button type="submit" class="btn">Convert to Fahrenheit</button>
+                }
+
+                @if (ViewBag.Fahrenheit != null)
+                {
+                    <div class="alert">Your temperature in Fahrenheit is: @ViewBag.Fahrenheit °F</div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
